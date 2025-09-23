@@ -9,6 +9,7 @@ Cette application mobile permet aux utilisateurs de créer et participer à des 
 - **Framework** : React Native avec Expo
 - **Langage** : TypeScript
 - **Styling** : Tailwind CSS (NativeWind)
+- **Thèmes** : Mode sombre et clair
 - **Plateforme** : Cross-platform (iOS/Android)
 
 ## Navigation par onglets
@@ -141,11 +142,16 @@ Ces écrans sont accessibles en naviguant depuis les onglets principaux :
 - Historique des paris avec pagination
 - Suivi des paris actifs
 - Statistiques de profit/perte
+- Paramètres de l'application
+- Basculement mode sombre/clair
+- Bouton de déconnexion
 
 **Composants nécessaires :**
 - BalanceCard (carte de solde)
 - BetHistoryList (liste historique des paris)
 - StatsChart (graphique des stats)
+- SettingsSection (section paramètres)
+- ThemeToggle (basculement de thème)
 
 ---
 
@@ -175,6 +181,11 @@ Ces écrans sont accessibles en naviguant depuis les onglets principaux :
 - PasswordStrengthIndicator (indicateur de force du mot de passe)
 - TermsCheckbox (case à cocher conditions)
 
+### Composants de thème
+- ThemeToggle (basculement mode sombre/clair)
+- SettingsSection (section paramètres)
+- ThemeProvider (fournisseur de thème)
+
 ---
 
 ## Structure des fichiers
@@ -182,59 +193,189 @@ Ces écrans sont accessibles en naviguant depuis les onglets principaux :
 ```
 src/
 ├── components/
-│   ├── common/
-│   │   ├── Button.tsx
-│   │   ├── Card.tsx
-│   │   ├── Input.tsx
-│   │   └── LoadingSpinner.tsx
-│   ├── bets/
-│   │   ├── BetCard.tsx
-│   │   ├── MultichoiceBetCard.tsx
-│   │   ├── BetDetails.tsx
-│   │   └── QuickBetModal.tsx
-│   ├── navigation/
-│   │   └── TabBar.tsx
-│   └── ui/
-│       ├── CategoryFilter.tsx
-│       ├── SearchBar.tsx
-│       ├── OddsDisplay.tsx
-│       └── auth/
-│           ├── LoginForm.tsx
-│           ├── RegisterForm.tsx
-│           ├── SocialLoginButtons.tsx
-│           ├── PasswordStrengthIndicator.tsx
-│           └── TermsCheckbox.tsx
+│   ├── atoms/
+│   │   ├── Button/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── Input/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── Text/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── Icon/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   └── Spinner/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── molecules/
+│   │   ├── Card/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── SearchBar/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── FilterButton/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── OddsDisplay/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   └── ThemeToggle/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── organisms/
+│   │   ├── Header/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── TabBar/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── BetCard/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── BetForm/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── LoginForm/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── RegisterForm/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   └── UserProfile/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   └── templates/
+│       ├── AuthLayout/
+│       │   ├── index.tsx
+│       │   └── types.ts
+│       ├── MainLayout/
+│       │   ├── index.tsx
+│       │   └── types.ts
+│       └── ModalLayout/
+│           ├── index.tsx
+│           └── types.ts
 ├── screens/
-│   ├── auth/
-│   │   ├── LoginScreen.tsx
-│   │   └── RegisterScreen.tsx
-│   ├── HomeScreen.tsx
-│   ├── LeaderboardScreen.tsx
-│   ├── SearchScreen.tsx
-│   ├── BreakingScreen.tsx
-│   ├── AddBetScreen.tsx
-│   ├── BetDetailsScreen.tsx
-│   └── ProfileScreen.tsx
-├── context/
-│   ├── AppContext.tsx
-│   └── types.ts
-├── hooks/
-│   ├── useBets.ts
-│   ├── useUser.ts
-│   ├── useAuth.ts
-│   └── useStorage.ts
-├── utils/
-│   ├── constants.ts
-│   ├── helpers.ts
-│   └── storage.ts
-├── types/
-│   └── index.ts
+│   ├── Auth/
+│   │   ├── LoginScreen/
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   └── RegisterScreen/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── Home/
+│   │   └── HomeScreen/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── Search/
+│   │   └── SearchScreen/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── Leaderboard/
+│   │   └── LeaderboardScreen/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── Trending/
+│   │   └── TrendingScreen/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── CreateBet/
+│   │   └── CreateBetScreen/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   ├── Profile/
+│   │   └── ProfileScreen/
+│   │       ├── index.tsx
+│   │       └── types.ts
+│   └── Shared/
+│       └── BetDetailsScreen/
+│           ├── index.tsx
+│           └── types.ts
 ├── navigation/
-│   ├── AppNavigator.tsx (Navigation principale avec onglets)
-│   ├── TabNavigator.tsx (Navigation par onglets)
-│   ├── AuthNavigator.tsx (Navigation d'authentification)
-│   └── types.ts
+│   ├── AppNavigator/
+│   │   ├── index.tsx
+│   │   └── types.ts
+│   ├── TabNavigator/
+│   │   ├── index.tsx
+│   │   └── types.ts
+│   └── AuthNavigator/
+│       ├── index.tsx
+│       └── types.ts
+├── services/
+│   ├── api/
+│   │   ├── auth.ts
+│   │   ├── bets.ts
+│   │   ├── users.ts
+│   │   └── index.ts
+│   ├── storage/
+│   │   ├── async-storage.ts
+│   │   ├── secure-storage.ts
+│   │   └── index.ts
+│   └── notifications/
+│       ├── push-notifications.ts
+│       └── index.ts
+├── hooks/
+│   ├── common/
+│   │   ├── useStorage.ts
+│   │   ├── useDebounce.ts
+│   │   └── useAsync.ts
+│   ├── auth/
+│   │   ├── useAuth.ts
+│   │   └── useUser.ts
+│   ├── bets/
+│   │   ├── useBets.ts
+│   │   ├── useBetDetails.ts
+│   │   └── useCreateBet.ts
+│   └── theme/
+│       └── useTheme.ts
+├── context/
+│   ├── providers/
+│   │   ├── AppProvider.tsx
+│   │   ├── AuthProvider.tsx
+│   │   ├── ThemeProvider.tsx
+│   │   └── index.ts
+│   └── types/
+│       ├── app.ts
+│       ├── auth.ts
+│       ├── theme.ts
+│       └── index.ts
+├── utils/
+│   ├── helpers/
+│   │   ├── format.ts
+│   │   ├── validation.ts
+│   │   ├── calculations.ts
+│   │   └── index.ts
+│   ├── constants/
+│   │   ├── colors.ts
+│   │   ├── sizes.ts
+│   │   ├── routes.ts
+│   │   └── index.ts
+│   └── config/
+│       ├── app.ts
+│       ├── theme.ts
+│       └── index.ts
+├── types/
+│   ├── global/
+│   │   ├── common.ts
+│   │   ├── navigation.ts
+│   │   └── index.ts
+│   ├── entities/
+│   │   ├── user.ts
+│   │   ├── bet.ts
+│   │   ├── market.ts
+│   │   └── index.ts
+│   └── api/
+│       ├── requests.ts
+│       ├── responses.ts
+│       └── index.ts
 └── assets/
     ├── images/
-    └── icons/
+    │   ├── icons/
+    │   ├── logos/
+    │   └── illustrations/
+    ├── fonts/
+    └── data/
+        └── mock-data.ts
 ```
