@@ -1,0 +1,1 @@
+// Navigation types - to be implemented

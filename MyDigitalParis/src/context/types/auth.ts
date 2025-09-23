@@ -1,0 +1,1 @@
+// Auth context types - to be implemented

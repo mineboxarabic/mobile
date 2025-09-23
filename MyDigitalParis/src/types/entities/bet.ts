@@ -1,0 +1,1 @@
+// Bet entity types - to be implemented
