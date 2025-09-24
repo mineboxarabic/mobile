@@ -9,12 +9,8 @@ import {
   SafeAreaView,
 } from "react-native";
 
-/**
- * Trending / Breaking — NativeWind only
- * - تصميم قريب من Polymarket
- * - ملف واحد .tsx
- * - جاهز للربط مع API لاحقًا
- */
+
+
 
 type Category = "Sports" | "Politics" | "Crypto" | "Entertainment";
 type Market = {
@@ -161,7 +157,7 @@ const MarketCard = ({ m, onBuy, onSell }: { m: Market; onBuy: () => void; onSell
   return (
     <View
       className="mb-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
-      style={{ elevation: 2 }} // ظل بسيط للأندرويد
+      style={{ elevation: 2 }} 
     >
       {/* header */}
       <View className="flex-row items-center justify-between px-4 pt-4">
