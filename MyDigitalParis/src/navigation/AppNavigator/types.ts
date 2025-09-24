@@ -1,1 +1,4 @@
-// AppNavigator types - to be implemented
+export type RootStackParamList = {
+  Home: undefined;
+  Search: undefined;
+};
