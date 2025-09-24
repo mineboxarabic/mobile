@@ -68,6 +68,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             onPress={() => {/* TODO: Navigate to create bet */}}
             className="mb-4 bg-orange-500 hover:bg-orange-600"
           />
+
+          <Button
+            title="⚡ Breaking"
+            onPress={() => navigation.navigate('Trending')}
+            className="mb-4 bg-red-500 hover:bg-red-600"
+          />
         </View>
 
         {/* Features Section */}

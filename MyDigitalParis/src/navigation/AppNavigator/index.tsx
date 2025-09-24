@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 // Screens
 import { HomeScreen } from '../../screens/Home/HomeScreen';
 import { SearchScreen } from '../../screens/Search/SearchScreen';
+import TrendingScreen from '../../screens/Trending/TrendingScreen';
 
 // Types
 import { RootStackParamList } from './types';
@@ -38,6 +39,14 @@ export const AppNavigator: React.FC = () => {
           component={SearchScreen}
           options={{
             title: 'Recherche',
+          }}
+        />
+
+           <Stack.Screen 
+             name="Trending" 
+             component={TrendingScreen}
+             options={{
+               title: 'Breaking',
           }}
         />
       </Stack.Navigator>
