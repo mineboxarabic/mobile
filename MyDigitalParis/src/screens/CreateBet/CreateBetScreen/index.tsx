@@ -139,7 +139,7 @@ export const CreateBetScreen: React.FC = () => {
         'Pari créé !',
         'Votre marché de prédiction a été créé avec succès.',
         [{ text: 'OK', onPress: () => {
-          // Reset form or navigate away
+          // Reset form
           setFormData({
             question: '',
             category: 'politique',
@@ -147,6 +147,7 @@ export const CreateBetScreen: React.FC = () => {
             endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             options: ['Oui', 'Non'],
           });
+          setErrors({});
         }}]
       );
     } catch (error) {
