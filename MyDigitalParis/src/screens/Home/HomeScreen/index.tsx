@@ -14,6 +14,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     navigation.navigate('Search');
   };
 
+  const handleNavigateToCreateBet = () => {
+    navigation.navigate('CreateBet');
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="flex-1 px-4">
@@ -65,7 +69,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
           <Button
             title="➕ Créer un pari"
-            onPress={() => {/* TODO: Navigate to create bet */}}
+            onPress={handleNavigateToCreateBet}
             className="mb-4 bg-orange-500 hover:bg-orange-600"
           />
         </View>

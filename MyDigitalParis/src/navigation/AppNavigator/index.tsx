@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 // Screens
 import { HomeScreen } from '../../screens/Home/HomeScreen';
 import { SearchScreen } from '../../screens/Search/SearchScreen';
+import { CreateBetScreen } from '../../screens/CreateBet/CreateBetScreen';
 
 // Types
 import { RootStackParamList } from './types';
@@ -38,6 +39,13 @@ export const AppNavigator: React.FC = () => {
           component={SearchScreen}
           options={{
             title: 'Recherche',
+          }}
+        />
+        <Stack.Screen 
+          name="CreateBet" 
+          component={CreateBetScreen}
+          options={{
+            title: 'Créer un pari',
           }}
         />
       </Stack.Navigator>
