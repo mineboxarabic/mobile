@@ -2,10 +2,11 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// Screens
-import { HomeScreen } from '../../screens/Home/HomeScreen';
-import { SearchScreen } from '../../screens/Search/SearchScreen';
-import { CreateBetScreen } from '../../screens/CreateBet/CreateBetScreen';
+// Navigators
+import { TabNavigator } from '../TabNavigator';
+
+// Screens (for modal/detail screens)
+import { BetDetailsScreen } from '../../screens/Shared/BetDetailsScreen';
 
 // Types
 import { RootStackParamList } from './types';
@@ -16,36 +17,35 @@ export const AppNavigator: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="MainTabs"
         screenOptions={{
-          headerStyle: {
-            backgroundColor: '#3B82F6',
-          },
-          headerTintColor: '#FFFFFF',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+          headerShown: false, // Hide headers since tabs will handle their own
         }}
       >
+        {/* Main Tab Navigator - contains all main screens with bottom navigation */}
         <Stack.Screen 
-          name="Home" 
-          component={HomeScreen}
+          name="MainTabs" 
+          component={TabNavigator}
           options={{
-            title: 'Accueil',
+            headerShown: false,
           }}
         />
+        
+        {/* Modal/Detail screens that appear over the tab navigation */}
         <Stack.Screen 
-          name="Search" 
-          component={SearchScreen}
+          name="BetDetails" 
+          component={BetDetailsScreen}
           options={{
-            title: 'Recherche',
-          }}
-        />
-        <Stack.Screen 
-          name="CreateBet" 
-          component={CreateBetScreen}
-          options={{
-            title: 'Créer un pari',
+            presentation: 'modal',
+            headerShown: true,
+            headerTitle: 'Détails du pari',
+            headerStyle: {
+              backgroundColor: '#3B82F6',
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
           }}
         />
       </Stack.Navigator>

@@ -1,5 +1,4 @@
 export type RootStackParamList = {
-  Home: undefined;
-  Search: undefined;
-  CreateBet: undefined;
+  MainTabs: undefined;
+  BetDetails: { betId: string };
 };
