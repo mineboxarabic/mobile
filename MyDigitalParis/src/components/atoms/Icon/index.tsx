@@ -35,6 +35,10 @@ export const Icon: React.FC<IconProps> = ({
       'bookmark': '🔖',
       'share': '📤',
       
+      // Navigation Icons
+      'home': '🏠',
+      'home-outline': '🏡',
+      
       // Categories
       'sports': '⚽',
       'politics': '🏛️',

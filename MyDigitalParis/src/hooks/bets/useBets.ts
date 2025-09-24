@@ -1,1 +1,1 @@
-// useBets hook - to be implemented
+// useBets hook - removed as requested

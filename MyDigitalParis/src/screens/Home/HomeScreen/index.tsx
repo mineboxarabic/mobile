@@ -14,6 +14,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     navigation.navigate('Search');
   };
 
+  const handleNavigateToCreateBet = () => {
+    navigation.navigate('CreateBet');
+  };
+  
+  const handleNavigateToTrending = () => {
+    navigation.navigate('Trending');
+  };
+  
+  const handleNavigateToProfile = () => {
+    navigation.navigate('Profile');
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="flex-1 px-4">
@@ -52,20 +64,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           />
 
           <Button
-            title="� Voir les tendances"
-            onPress={() => {/* TODO: Navigate to trending */}}
+            title="📊 Voir les tendances"
+            onPress={handleNavigateToTrending}
             className="mb-4 bg-green-500 hover:bg-green-600"
           />
 
           <Button
-            title="🏆 Classement"
-            onPress={() => {/* TODO: Navigate to leaderboard */}}
+            title="👤 Mon profil"
+            onPress={handleNavigateToProfile}
             className="mb-4 bg-purple-500 hover:bg-purple-600"
           />
 
           <Button
             title="➕ Créer un pari"
-            onPress={() => {/* TODO: Navigate to create bet */}}
+            onPress={handleNavigateToCreateBet}
             className="mb-4 bg-orange-500 hover:bg-orange-600"
           />
 
